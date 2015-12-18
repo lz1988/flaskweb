@@ -1,0 +1,23 @@
+<html>
+<title>Flaskr</title>
+<head><meta charset="UTF-8"/> </head>
+<body>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+<div class=page>
+    <h1>首页</h1>
+    <div class=metanav>
+        {% if not session.username %}
+        <a href="{{ url_for('login') }}">登录</a>
+        {% else %}
+        欢迎你 {{ session.username }} <a href="{{ url_for('logout') }}">退出</a>
+        {% endif %}
+    </div>
+    {% for message in get_flashed_messages() %}
+    <div class=flash>{{ message }}</div>
+    {% endfor %}
+    {% block body %}{% endblock %}
+
+
+</div>
+</body>
+</html>

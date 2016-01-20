@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 # Load default config and override config from an environment variable
 app.config.update(dict(
-    DATABASE=os.path.join(app.root_path, 'myapp.db'),
+    DATABASE=os.path.join(app.root_path, './data/myapp.db'),
     DEBUG=True,
     SECRET_KEY='\xc4\xda\xfea\x93@|f(\x9dr\xa2\xb0@%\xb6\x1fF"\xe4\x1a\xa3\xcf',
     USERNAME='admin',
@@ -101,11 +101,13 @@ def logout():
 
 @app.route('/add', methods=['POST'])
 def add():
+    #g.db = connect_db()
+    db = get_db()
     if not session.get('username'):
         abort(401)
-    g.db.execute('insert into entries (title, text) values (?, ?)',
+    db.execute('insert into entries (title, text) values (?, ?)',
                  [request.form['title'], request.form['text']])
-    g.db.commit()
+    db.commit()
     flash('New entry was successfully posted')
     return redirect(url_for('index'))
 

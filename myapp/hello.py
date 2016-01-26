@@ -54,7 +54,7 @@ def close_db(error):
 @app.route('/')
 def index():
     db = get_db()
-    cur = db.execute('select title, text from entries order by id desc')
+    cur = db.execute('select title, text, firstcreate from entries order by id desc')
     entries = cur.fetchall()
     return render_template('home.html', entries=entries)
 

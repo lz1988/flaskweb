@@ -1,0 +1,12 @@
+<html>
+<head><title>admin</title></head>
+<body>
+<div><h1>后台管理系统</h1></div>
+<div> 你好 {{ session.admin_username }}<a href="/admin/admin_logout">注销</a></div><div><a href="/">网站前台</a></div>
+{% extends "/admin/menu.html" %}
+
+{% block content %}
+dd
+{% endblock %}
+</body>
+</html>

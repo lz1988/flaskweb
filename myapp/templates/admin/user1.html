@@ -1,0 +1,17 @@
+<a href="/admin/admin_user_add">新增</a>
+<table border="1">
+  <tr>
+    <th>编号</th>
+    <th>用户名</th>
+    <th>密码</th>
+    <th>操作</th>
+  </tr>
+  {% for entry in entries %}
+  <tr>
+    <td>{{ entry.user_id }}</td>
+    <td>{{ entry.user_name }}</td>
+    <td>{{ entry.pass_word }}</td>
+    <td><a href="/admin/admin_user_delete/{{ entry.user_id }}">删除</a><a href="/admin/admin_user_edit/{{ entry.user_id }}">修改</a></td>
+  </tr>
+  {% endfor %}
+</table>
